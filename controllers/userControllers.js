@@ -1,6 +1,8 @@
-import initKnex from "knex";
-import configuration from "../knexfile.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import initKnex from "knex";
+
+import configuration from "../knexfile.js";
 
 const knex = initKnex(configuration);
 
@@ -19,8 +21,13 @@ export const createUser = async (req, res) => {
     if (existingUsers.length > 0) {
       return res.status(404).send({ message: "This user already exists" });
     } else {
-      await knex("user_profiles").insert(newUser);
-      return res.status(201).json("New user successfully created");
+      const user = await knex("user_profiles").insert(newUser);
+      const userid = user[0];
+
+      const token = jwt.sign({ id: userid, email: newUser.email, password: newUser.password }, process.env.JWT_KEY, {
+        expiresIn: "24h",
+      });
+      return res.status(201).json(token);
     }
   } catch (error) {
     return res.status(500).send({ message: "An error occurred on the server" });
@@ -29,7 +36,7 @@ export const createUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  
+
   try {
     const existingUser = await knex("user_profiles").where({ email: email }).first();
     if (!existingUser) {
@@ -39,7 +46,14 @@ export const loginUser = async (req, res) => {
     if (!passwordCheck) {
       return res.status(400).send("Invalid password");
     }
-    res.status(200).json("Logged In");;
+
+    const token = jwt.sign(
+      { id: existingUser.id, email: existingUser.email, password: existingUser.password },
+      process.env.JWT_KEY,
+      { expiresIn: "24h" }
+    );
+
+    res.status(200).json(token);
   } catch (error) {
     return res.status(500).send({ message: "An error occurred on the server" });
   }
