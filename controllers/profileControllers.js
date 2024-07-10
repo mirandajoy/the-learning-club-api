@@ -6,17 +6,35 @@ import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 
 export const getProfile = async (req, res) => {
-  if (!req.headers.authorization) {
-    return res.status(401).send("Please login");
-  }
-
-  const authHeader = req.headers.authorization;
-  const authToken = authHeader.split(" ")[1];
+  const payload = req.tokenPayload;
 
   try {
-    const payload = jwt.verify(authToken, process.env.JWT_KEY);
     const profile = await knex("user_profiles").where({ id: payload.id }).select("name").first();
     res.status(200).send(profile);
+  } catch (err) {
+    return res.status(500).send({ message: "An error occurred on the server" });
+  }
+};
+
+export const getProfileEvents = async (req, res) => {
+  const payload = req.tokenPayload;
+
+  try {
+    const profileEvents = await knex
+      .with("rsvp", (qb) => {
+        qb.select("event_id", "status")
+          .from("event_rsvps")
+          .where({ user_id: payload.id })
+          .groupBy("event_id", "status");
+      })
+      .select("events.id", "events.group_id", "time", "location", "remote_link", "rsvp.event_id", "status")
+      .from("rsvp")
+      .rightJoin("events", "events.id", "rsvp.event_id")
+      .rightJoin("group_members", "group_members.group_id", "events.group_id")
+      .where({ user_id: payload.id })
+      .orderBy("time");
+
+    res.status(200).send(profileEvents);
   } catch (err) {
     return res.status(500).send({ message: "An error occurred on the server" });
   }

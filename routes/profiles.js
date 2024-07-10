@@ -1,9 +1,11 @@
 import express from "express";
+import auth from "../middleware/auth.js";
 
-import {getProfile} from "../controllers/profileControllers.js";
+import { getProfile, getProfileEvents } from "../controllers/profileControllers.js";
 
 const profilesRouter = express.Router();
 
-profilesRouter.get("/", getProfile);
+profilesRouter.get("/", auth, getProfile);
+profilesRouter.get("/events", auth, getProfileEvents);
 
 export default profilesRouter;

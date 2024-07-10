@@ -6,7 +6,7 @@ import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 
 export const getGroups = async (req, res) => {
-  if (!req.headers.authorization) {
+  if (!req.tokenPayload) {
     try {
       const groups = await knex
         .select("id", "city", "state", "country", "remote")
@@ -19,9 +19,7 @@ export const getGroups = async (req, res) => {
     }
   }
 
-  const authHeader = req.headers.authorization;
-  const authToken = authHeader.split(" ")[1];
-  const payload = jwt.verify(authToken, process.env.JWT_KEY);
+  const payload = req.tokenPayload;
 
   try {
     const groups = await knex
@@ -40,10 +38,8 @@ export const getGroups = async (req, res) => {
 
 export const joinGroup = async (req, res) => {
   const { id } = req.params;
-  const authHeader = req.headers.authorization;
-  const authToken = authHeader.split(" ")[1];
 
-  const payload = jwt.verify(authToken, process.env.JWT_KEY);
+  const payload = req.tokenPayload;
 
   const newMember = {
     group_id: id,
