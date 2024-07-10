@@ -18,6 +18,6 @@ export const getProfile = async (req, res) => {
     const profile = await knex("user_profiles").where({ id: payload.id }).select("name").first();
     res.status(200).send(profile);
   } catch (err) {
-    console.log(err);
+    return res.status(500).send({ message: "An error occurred on the server" });
   }
 };
