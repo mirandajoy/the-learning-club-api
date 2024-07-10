@@ -21,7 +21,7 @@ export const eventRSVP = async (req, res) => {
   const { id } = req.params;
   const { response } = req.body;
 
-  const payload = req.tokenPayload.id;
+  const payload = req.tokenPayload;
 
   const eventRSVP = {
     user_id: payload.id,
