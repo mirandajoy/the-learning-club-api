@@ -36,6 +36,42 @@ export const getGroups = async (req, res) => {
   }
 };
 
+export const getSingleGroup = async (req, res) => {
+  const { id } = req.params;
+
+  if (!req.tokenPayload) {
+    try {
+      const groups = await knex
+        .select("id", "city", "state", "country", "remote")
+        .from("groups")
+        .where({ remote: 0 })
+        .andWhere({ id: id })
+        .orderBy("city");
+      return res.status(200).send(groups);
+    } catch (err) {
+      return res.status(500).send({ message: "An error occurred on the server" });
+    }
+  }
+
+  const payload = req.tokenPayload;
+
+  try {
+    const groups = await knex
+      .with("groups_joined", (qb) => {
+        qb.select("group_id").from("group_members").where({ user_id: payload.id }).groupBy("group_id");
+      })
+      .select("*")
+      .from("groups_joined")
+      .rightJoin("groups", "groups.id", "groups_joined.group_id")
+      .where({ remote: 0 })
+      .andWhere({ id: id })
+      .first();
+    res.status(200).send(groups);
+  } catch (err) {
+    return res.status(500).send({ message: "An error occurred on the server" });
+  }
+};
+
 export const joinGroup = async (req, res) => {
   const { id } = req.params;
 
