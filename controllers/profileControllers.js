@@ -22,12 +22,11 @@ export const getProfileEvents = async (req, res) => {
   try {
     const profileEvents = await knex
       .with("rsvp", (qb) => {
-        qb.select("event_id", "status")
+        qb.select("id", "event_id", "status")
           .from("event_rsvps")
           .where({ user_id: payload.id })
-          .groupBy("event_id", "status");
       })
-      .select("events.id", "events.group_id", "time", "location", "remote_link", "rsvp.event_id", "status")
+      .select("events.id", "events.group_id", "time", "location", "remote_link", "rsvp.event_id", "status", "rsvp.id as rsvp_id")
       .from("rsvp")
       .rightJoin("events", "events.id", "rsvp.event_id")
       .rightJoin("group_members", "group_members.group_id", "events.group_id")

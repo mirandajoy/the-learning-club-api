@@ -109,7 +109,7 @@ export const getGroupEvents = async (req, res) => {
       .with("rsvp", (qb) => {
         qb.select("id", "event_id", "status").from("event_rsvps").where({ user_id: payload.id });
       })
-      .select("events.id", "location", "time", "status", "group_id", "remote_link")
+      .select("events.id", "location", "time", "status", "group_id", "remote_link", "rsvp.id as rsvp_id")
       .from("events")
       .leftJoin("rsvp", "events.id", "rsvp.event_id")
       .where({ group_id: id });
