@@ -8,6 +8,6 @@ const groupsRouter = express.Router();
 groupsRouter.get("/", auth, getGroups);
 groupsRouter.get("/:id", auth, getSingleGroup);
 groupsRouter.post("/:id/members", auth, joinGroup);
-groupsRouter.get("/:id/events", getGroupEvents);
+groupsRouter.get("/:id/events", auth, getGroupEvents);
 
 export default groupsRouter;

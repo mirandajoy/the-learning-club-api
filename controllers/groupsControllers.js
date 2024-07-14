@@ -9,9 +9,8 @@ export const getGroups = async (req, res) => {
   if (!req.tokenPayload) {
     try {
       const groups = await knex
-        .select("id", "city", "state", "country", "remote")
+        .select("id", "city", "state", "country", "remote", "name")
         .from("groups")
-        .where({ remote: 0 })
         .orderBy("city");
       return res.status(200).send(groups);
     } catch (err) {
@@ -29,7 +28,7 @@ export const getGroups = async (req, res) => {
       .select("*")
       .from("groups_joined")
       .rightJoin("groups", "groups.id", "groups_joined.group_id")
-      .where({ remote: 0 });
+      .orderBy("city");
     res.status(200).send(groups);
   } catch (err) {
     return res.status(500).send({ message: "An error occurred on the server" });
@@ -42,11 +41,10 @@ export const getSingleGroup = async (req, res) => {
   if (!req.tokenPayload) {
     try {
       const groups = await knex
-        .select("id", "city", "state", "country", "remote")
+        .select("id", "city", "state", "country", "remote", "name")
         .from("groups")
-        .where({ remote: 0 })
         .andWhere({ id: id })
-        .orderBy("city");
+        .first();
       return res.status(200).send(groups);
     } catch (err) {
       return res.status(500).send({ message: "An error occurred on the server" });
@@ -63,10 +61,9 @@ export const getSingleGroup = async (req, res) => {
       .select("*")
       .from("groups_joined")
       .rightJoin("groups", "groups.id", "groups_joined.group_id")
-      .where({ remote: 0 })
       .andWhere({ id: id })
       .first();
-    res.status(200).send(groups);
+    return res.status(200).send(groups);
   } catch (err) {
     return res.status(500).send({ message: "An error occurred on the server" });
   }
@@ -86,7 +83,7 @@ export const joinGroup = async (req, res) => {
   try {
     const memberId = await knex("group_members").insert(newMember);
     const addedMember = { id: memberId[0], group_id: id, role: "member" };
-    res.status(201).send(addedMember);
+    return res.status(201).send(addedMember);
   } catch (err) {
     return res.status(500).send({ message: "An error occurred on the server" });
   }
@@ -95,9 +92,28 @@ export const joinGroup = async (req, res) => {
 export const getGroupEvents = async (req, res) => {
   const { id } = req.params;
 
+  if (!req.tokenPayload) {
+    try {
+      const events = await knex("events").select("*").where({ group_id: id });
+
+      return res.status(200).send(events);
+    } catch (err) {
+      return res.status(500).send({ message: "An error occurred on the server" });
+    }
+  }
+
+  const payload = req.tokenPayload;
+
   try {
-    const events = await knex.select("id", "location", "time").from("events").where({ group_id: id }).orderBy("time");
-    res.status(200).send(events);
+    const eventList = await knex
+      .with("rsvp", (qb) => {
+        qb.select("id", "event_id", "status").from("event_rsvps").where({ user_id: payload.id });
+      })
+      .select("events.id", "location", "time", "status", "group_id", "remote_link")
+      .from("events")
+      .leftJoin("rsvp", "events.id", "rsvp.event_id")
+      .where({ group_id: id });
+    res.status(200).send(eventList);
   } catch (err) {
     return res.status(500).send({ message: "An error occurred on the server" });
   }
