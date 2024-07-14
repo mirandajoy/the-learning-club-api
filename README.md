@@ -1,12 +1,12 @@
 # The Learning Club
 
-The Learning Club provides learning resources each month around a specific topic. It then allows users to join group and attend events to discuss what they've learned a meet new people.
+The Learning Club provides learning resources each month around a specific topic. It then allows users to join groups and attend events to discuss what they've learned and meet new people.
 
 This repo contains the server application. The client application can be accessed [here](https://github.com/mirandajoy/miranda-neerhof-the-learning-club).
 
 ## Dependencies
 
-This applications is built using a MySQL database. You'll need to have it installed to seed data and run the server. If you don't have MySQL installed you can follow the directions [here for Mac](https://dev.mysql.com/doc/refman/8.0/en/macos-installation.html) and [here for Windows](https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html).
+This application is built using a MySQL database. You'll need to have it installed to seed data and run the server. If you don't have MySQL installed you can follow the directions [here for Mac](https://dev.mysql.com/doc/refman/8.0/en/macos-installation.html) and [here for Windows](https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html).
 
 ## Installation
 
