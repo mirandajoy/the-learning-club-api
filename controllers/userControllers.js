@@ -19,12 +19,12 @@ export const createUser = async (req, res) => {
   try {
     const existingUsers = await knex("user_profiles").where({ email: email });
     if (existingUsers.length > 0) {
-      return res.status(404).send({ message: "This user already exists" });
+      return res.status(404).send({ message: "This email has already been used to create an account" });
     } else {
       const user = await knex("user_profiles").insert(newUser);
       const userid = user[0];
 
-      const token = jwt.sign({ id: userid, email: newUser.email, password: newUser.password }, process.env.JWT_KEY, {
+      const token = jwt.sign({ id: userid }, process.env.JWT_KEY, {
         expiresIn: "24h",
       });
       return res.status(201).json(token);
@@ -40,15 +40,15 @@ export const loginUser = async (req, res) => {
   try {
     const existingUser = await knex("user_profiles").where({ email: email }).first();
     if (!existingUser) {
-      return res.status(400).send("Invalid email");
+      return res.status(400).send({ message: "This email and password combination doesn't match"});
     }
     const passwordCheck = bcrypt.compareSync(password, existingUser.password);
     if (!passwordCheck) {
-      return res.status(400).send("Invalid password");
+      return res.status(400).send({ message: "This email and password combination doesn't match"});
     }
 
     const token = jwt.sign(
-      { id: existingUser.id, email: existingUser.email, password: existingUser.password },
+      { id: existingUser.id },
       process.env.JWT_KEY,
       { expiresIn: "24h" }
     );
