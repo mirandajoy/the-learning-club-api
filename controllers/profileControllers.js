@@ -16,17 +16,40 @@ export const getProfile = async (req, res) => {
   }
 };
 
+export const getProfileGroups = async (req, res) => {
+  const payload = req.tokenPayload;
+
+  try {
+    const profileGroups = await knex
+      .select("*")
+      .from("group_members")
+      .join("groups", "groups.id", "group_members.group_id")
+      .where({ user_id: payload.id })
+      .orderBy("city");
+    res.status(200).send(profileGroups);
+  } catch (err) {
+    return res.status(500).send({ message: "An error occurred on the server" });
+  }
+};
+
 export const getProfileEvents = async (req, res) => {
   const payload = req.tokenPayload;
 
   try {
     const profileEvents = await knex
       .with("rsvp", (qb) => {
-        qb.select("id", "event_id", "status")
-          .from("event_rsvps")
-          .where({ user_id: payload.id })
+        qb.select("id", "event_id", "status").from("event_rsvps").where({ user_id: payload.id });
       })
-      .select("events.id", "events.group_id", "time", "location", "remote_link", "rsvp.event_id", "status", "rsvp.id as rsvp_id")
+      .select(
+        "events.id",
+        "events.group_id",
+        "time",
+        "location",
+        "remote_link",
+        "rsvp.event_id",
+        "status",
+        "rsvp.id as rsvp_id"
+      )
       .from("rsvp")
       .rightJoin("events", "events.id", "rsvp.event_id")
       .rightJoin("group_members", "group_members.group_id", "events.group_id")
