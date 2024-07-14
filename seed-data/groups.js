@@ -1,6 +1,7 @@
 export default [
   {
     id: 1,
+    name: "Halifax",
     city: "Halifax",
     state: "Nova Scotia",
     country: "Canada",
@@ -8,6 +9,7 @@ export default [
   },
   {
     id: 2,
+    name: "Montreal",
     city: "Montreal",
     state: "Quebec",
     country: "Canada",
@@ -15,6 +17,7 @@ export default [
   },
   {
     id: 3,
+    name: "Ottawa",
     city: "Ottawa",
     state: "Ontario",
     country: "Canada",
@@ -22,6 +25,7 @@ export default [
   },
   {
     id: 4,
+    name: "Toronto",
     city: "Toronto",
     state: "Ontario",
     country: "Canada",
@@ -29,6 +33,7 @@ export default [
   },
   {
     id: 5,
+    name: "Calgary",
     city: "Calgary",
     state: "Alberta",
     country: "Canada",
@@ -36,6 +41,7 @@ export default [
   },
   {
     id: 6,
+    name: "Vancouver",
     city: "Vancouver",
     state: "British Columbia",
     country: "Canada",
@@ -43,6 +49,7 @@ export default [
   },
   {
     id: 7,
+    name: "New York",
     city: "New York",
     state: "New York",
     country: "United States",
@@ -50,6 +57,7 @@ export default [
   },
   {
     id: 8,
+    name: "Chicago",
     city: "Chicago",
     state: "Illinois",
     country: "United States",
@@ -57,6 +65,7 @@ export default [
   },
   {
     id: 9,
+    name: "Washington",
     city: "Washington",
     state: "District of Columbia",
     country: "United States",
@@ -64,6 +73,7 @@ export default [
   },
   {
     id: 10,
+    name: "Austin",
     city: "Austin",
     state: "Texas",
     country: "United States",
@@ -71,6 +81,7 @@ export default [
   },
   {
     id: 11,
+    name: "Atlanta",
     city: "Atlanta",
     state: "Georgia",
     country: "United States",
@@ -78,6 +89,7 @@ export default [
   },
   {
     id: 12,
+    name: "Miami",
     city: "Miami",
     state: "Florida",
     country: "United States",
@@ -85,6 +97,7 @@ export default [
   },
   {
     id: 13,
+    name: "Denver",
     city: "Denver",
     state: "Colorado",
     country: "United States",
@@ -92,6 +105,7 @@ export default [
   },
   {
     id: 14,
+    name: "Phoenix",
     city: "Phoenix",
     state: "Arizona",
     country: "United States",
@@ -99,6 +113,7 @@ export default [
   },
   {
     id: 15,
+    name: "Seattle",
     city: "Seattle",
     state: "Washington",
     country: "United States",
@@ -106,6 +121,7 @@ export default [
   },
   {
     id: 16,
+    name: "San Francisco",
     city: "San Francisco",
     state: "California",
     country: "United States",
@@ -113,18 +129,22 @@ export default [
   },
   {
     id: 17,
+    name: "Mondays Remote",
     remote: true,
   },
   {
     id: 18,
+    name: "Tuesdays Remote",
     remote: true,
   },
   {
     id: 19,
+    name: "Wednesdays Remote",
     remote: true,
   },
   {
     id: 20,
+    name: "Thursdays Remote",
     remote: true,
   },
 ];
