@@ -21,7 +21,7 @@ export const getProfileGroups = async (req, res) => {
 
   try {
     const profileGroups = await knex
-      .select("*")
+      .select("groups.id", "city", "state", "country", "remote", "name", "group_id as joined")
       .from("group_members")
       .join("groups", "groups.id", "group_members.group_id")
       .where({ user_id: payload.id })
@@ -42,12 +42,11 @@ export const getProfileEvents = async (req, res) => {
       })
       .select(
         "events.id",
-        "events.group_id",
         "time",
         "location",
         "remote_link",
-        "rsvp.event_id",
         "status",
+        "events.group_id as joined",
         "rsvp.id as rsvp_id"
       )
       .from("rsvp")

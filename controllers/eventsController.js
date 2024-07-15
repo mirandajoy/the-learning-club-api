@@ -65,7 +65,7 @@ export const eventRSVP = async (req, res) => {
 
   try {
     const rsvpId = await knex("event_rsvps").insert(eventRSVP);
-    const addedRsvp = { id: rsvpId[0], event_id: id, response: response };
+    const addedRsvp = { id: rsvpId[0], event_id: id, status: response };
     res.status(201).send(addedRsvp);
   } catch (err) {
     return res.status(500).send({ message: "An error occurred on the server" });
@@ -86,7 +86,7 @@ export const updateRSVP = async (req, res) => {
 
   try {
     const rsvpDBId = await knex("event_rsvps").where({ id: rsvpId }).update(eventRSVP);
-    const updatedRsvp = { id: rsvpDBId[0], event_id: id, response: response };
+    const updatedRsvp = { id: rsvpDBId[0], event_id: id, status: response };
     return res.status(201).send(updatedRsvp);
   } catch (err) {
     return res.status(500).send({ message: "An error occurred on the server" });

@@ -25,7 +25,7 @@ export const getGroups = async (req, res) => {
       .with("groups_joined", (qb) => {
         qb.select("group_id").from("group_members").where({ user_id: payload.id }).groupBy("group_id");
       })
-      .select("*")
+      .select("id", "city", "state", "country", "remote", "name", "group_id as joined")
       .from("groups_joined")
       .rightJoin("groups", "groups.id", "groups_joined.group_id")
       .orderBy("city");
@@ -58,7 +58,7 @@ export const getSingleGroup = async (req, res) => {
       .with("groups_joined", (qb) => {
         qb.select("group_id").from("group_members").where({ user_id: payload.id }).groupBy("group_id");
       })
-      .select("*")
+      .select("id", "city", "state", "country", "remote", "name", "group_id as joined")
       .from("groups_joined")
       .rightJoin("groups", "groups.id", "groups_joined.group_id")
       .andWhere({ id: id })
@@ -95,7 +95,6 @@ export const getGroupEvents = async (req, res) => {
   if (!req.tokenPayload) {
     try {
       const events = await knex("events").select("*").where({ group_id: id });
-
       return res.status(200).send(events);
     } catch (err) {
       return res.status(500).send({ message: "An error occurred on the server" });
@@ -109,7 +108,7 @@ export const getGroupEvents = async (req, res) => {
       .with("rsvp", (qb) => {
         qb.select("id", "event_id", "status").from("event_rsvps").where({ user_id: payload.id });
       })
-      .select("events.id", "location", "time", "status", "group_id", "remote_link", "rsvp.id as rsvp_id")
+      .select("events.id", "location", "time", "status", "group_id as joined", "remote_link", "rsvp.id as rsvp_id")
       .from("events")
       .leftJoin("rsvp", "events.id", "rsvp.event_id")
       .where({ group_id: id });
