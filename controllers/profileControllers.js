@@ -51,7 +51,7 @@ export const getProfileEvents = async (req, res) => {
       )
       .from("rsvp")
       .rightJoin("events", "events.id", "rsvp.event_id")
-      .rightJoin("group_members", "group_members.group_id", "events.group_id")
+      .leftJoin("group_members", "group_members.group_id", "events.group_id")
       .where({ user_id: payload.id })
       .orderBy("time");
 
