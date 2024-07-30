@@ -85,8 +85,8 @@ export const createEvent = async (req, res) => {
 
     await mkRSVP("event_rsvps").insert(rsvpWithForeignKey);
     await mkRSVP.commit();
-
-    return res.status(201).send({ message: "New event created" });
+    
+    return res.status(201).send({ message: eventId });
   } catch (err) {
     await mkEvent.rollback();
     await mkRSVP.rollback();
