@@ -7,8 +7,4 @@ export default [
     id: 2,
     country_name: "United States",
   },
-  {
-    id: 3,
-    country_name: "Remote",
-  },
 ];
