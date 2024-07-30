@@ -18,9 +18,20 @@ export const getGroups = async (req, res) => {
   if (!req.tokenPayload) {
     try {
       const groups = await knex
-        .select("id", "city", "state", "country", "remote", "name")
+        .select(
+          "groups.id",
+          "city",
+          "region_id",
+          "regions.region_name",
+          "groups.country_id",
+          "countries.country_name",
+          "remote",
+          "name"
+        )
         .from("groups")
-        .orderBy("city");
+        .join("countries", "countries.id", "groups.country_id")
+        .join("regions", "regions.id", "groups.region_id")
+        .orderBy("name");
       return res.status(200).send(groups);
     } catch (err) {
       return res.status(500).send({ message: "An error occurred on the server" });
@@ -34,9 +45,22 @@ export const getGroups = async (req, res) => {
       .with("groups_joined", (qb) => {
         qb.select("group_id", "role").from("group_members").where({ user_id: payload.id });
       })
-      .select("id", "city", "state", "country", "remote", "name", "role", "group_id as joined")
+      .select(
+        "groups.id",
+        "city",
+        "region_id",
+        "regions.region_name",
+        "groups.country_id",
+        "countries.country_name",
+        "remote",
+        "name",
+        "role",
+        "group_id as joined"
+      )
       .from("groups_joined")
       .rightJoin("groups", "groups.id", "groups_joined.group_id")
+      .join("countries", "countries.id", "groups.country_id")
+      .join("regions", "regions.id", "groups.region_id")
       .orderBy("city");
     return res.status(200).send(groups);
   } catch (err) {
@@ -50,9 +74,20 @@ export const getSingleGroup = async (req, res) => {
   if (!req.tokenPayload) {
     try {
       const groups = await knex
-        .select("id", "city", "state", "country", "remote", "name")
+        .select(
+          "groups.id",
+          "city",
+          "region_id",
+          "regions.region_name",
+          "groups.country_id",
+          "countries.country_name",
+          "remote",
+          "name"
+        )
         .from("groups")
-        .andWhere({ id: id })
+        .join("countries", "countries.id", "groups.country_id")
+        .join("regions", "regions.id", "groups.region_id")
+        .andWhere({ "groups.id": id })
         .first();
       return res.status(200).send(groups);
     } catch (err) {
@@ -67,10 +102,22 @@ export const getSingleGroup = async (req, res) => {
       .with("groups_joined", (qb) => {
         qb.select("group_id").from("group_members").where({ user_id: payload.id }).groupBy("group_id");
       })
-      .select("id", "city", "state", "country", "remote", "name", "group_id as joined")
+      .select(
+        "groups.id",
+        "city",
+        "region_id",
+        "regions.region_name",
+        "groups.country_id",
+        "countries.country_name",
+        "remote",
+        "name",
+        "group_id as joined"
+      )
       .from("groups_joined")
       .rightJoin("groups", "groups.id", "groups_joined.group_id")
-      .andWhere({ id: id })
+      .join("countries", "countries.id", "groups.country_id")
+      .join("regions", "regions.id", "groups.region_id")
+      .andWhere({ "groups.id": id })
       .first();
     return res.status(200).send(groups);
   } catch (err) {
@@ -138,16 +185,16 @@ export const getGroupEvents = async (req, res) => {
 };
 
 export const createGroup = async (req, res) => {
-  const { groupName, city, state, country, remote } = req.body;
+  const { groupName, city, region_id, country_id, remote } = req.body;
 
   const payload = req.tokenPayload;
 
   const newGroup = {
     name: groupName,
-    city: city,
-    state: state,
-    country: country,
-    remote: remote,
+    city: city || null,
+    region_id: region_id || null,
+    country_id: country_id || null,
+    remote: parseInt(remote),
   };
 
   const newOwner = {
@@ -171,7 +218,7 @@ export const createGroup = async (req, res) => {
     await mkOwner("group_members").insert(ownerWithForeignKey);
     await mkOwner.commit();
 
-    return res.status(201).send({message: groupId});
+    return res.status(201).send({ message: groupId });
   } catch (err) {
     await mkGroup.rollback();
     await mkOwner.rollback();
@@ -182,16 +229,16 @@ export const createGroup = async (req, res) => {
 
 export const editGroup = async (req, res) => {
   const { id } = req.params;
-  const { name, city, state, country, remote } = req.body;
+  const { groupName, city, region_id, country_id, remote } = req.body;
 
   const payload = req.tokenPayload;
 
   const updatedGroup = {
-    name: name,
+    name: groupName,
     city: city,
-    state: state,
-    country: country,
-    remote: parseInt(remote),
+    region_id: region_id,
+    country_id: country_id,
+    remote: remote,
   };
 
   try {

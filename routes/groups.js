@@ -1,6 +1,14 @@
 import express from "express";
 
-import { createGroup, deleteGroup, editGroup, getGroupEvents, getGroups, getSingleGroup, joinGroup } from "../controllers/groupsControllers.js";
+import {
+  createGroup,
+  deleteGroup,
+  editGroup,
+  getGroupEvents,
+  getGroups,
+  getSingleGroup,
+  joinGroup,
+} from "../controllers/groupsControllers.js";
 import auth from "../middleware/auth.js";
 
 const groupsRouter = express.Router();

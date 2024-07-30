@@ -21,12 +21,26 @@ export const getProfileGroups = async (req, res) => {
 
   try {
     const profileGroups = await knex
-      .select("groups.id", "city", "state", "country", "remote", "name", "group_id as joined")
+      .select(
+        "groups.id",
+        "city",
+        "region_id",
+        "regions.region_name",
+        "groups.country_id",
+        "countries.country_name",
+        "remote",
+        "name",
+        "group_id as joined",
+        "role"
+      )
       .from("group_members")
       .join("groups", "groups.id", "group_members.group_id")
+      .leftJoin("countries", "countries.id", "groups.country_id")
+      .leftJoin("regions", "regions.id", "groups.region_id")
       .where({ user_id: payload.id })
       .orderBy("city");
-    res.status(200).send(profileGroups);
+
+    return res.status(200).send(profileGroups);
   } catch (err) {
     return res.status(500).send({ message: "An error occurred on the server" });
   }
