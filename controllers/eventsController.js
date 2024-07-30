@@ -97,7 +97,7 @@ export const createEvent = async (req, res) => {
 
 export const editEvent = async (req, res) => {
   const { id } = req.params;
-  const { location, address, time, group_id, remote_link } = req.body;
+  const { location, address, time, group_id, remote_link, user_tz } = req.body;
 
   const payload = req.tokenPayload;
 
@@ -105,6 +105,7 @@ export const editEvent = async (req, res) => {
     location: location,
     address: address,
     time: time,
+    user_tz: user_tz,
     group_id: group_id,
     remote_link: remote_link,
   };
