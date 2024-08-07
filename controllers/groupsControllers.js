@@ -29,8 +29,8 @@ export const getGroups = async (req, res) => {
           "name"
         )
         .from("groups")
-        .join("countries", "countries.id", "groups.country_id")
-        .join("regions", "regions.id", "groups.region_id")
+        .leftJoin("countries", "countries.id", "groups.country_id")
+        .leftJoin("regions", "regions.id", "groups.region_id")
         .orderBy("name");
       return res.status(200).send(groups);
     } catch (err) {
@@ -59,8 +59,8 @@ export const getGroups = async (req, res) => {
       )
       .from("groups_joined")
       .rightJoin("groups", "groups.id", "groups_joined.group_id")
-      .join("countries", "countries.id", "groups.country_id")
-      .join("regions", "regions.id", "groups.region_id")
+      .leftJoin("countries", "countries.id", "groups.country_id")
+      .leftJoin("regions", "regions.id", "groups.region_id")
       .orderBy("city");
     return res.status(200).send(groups);
   } catch (err) {
@@ -85,8 +85,8 @@ export const getSingleGroup = async (req, res) => {
           "name"
         )
         .from("groups")
-        .join("countries", "countries.id", "groups.country_id")
-        .join("regions", "regions.id", "groups.region_id")
+        .leftJoin("countries", "countries.id", "groups.country_id")
+        .leftJoin("regions", "regions.id", "groups.region_id")
         .andWhere({ "groups.id": id })
         .first();
       return res.status(200).send(groups);
@@ -100,7 +100,7 @@ export const getSingleGroup = async (req, res) => {
   try {
     const groups = await knex
       .with("groups_joined", (qb) => {
-        qb.select("group_id").from("group_members").where({ user_id: payload.id }).groupBy("group_id");
+        qb.select("group_id", "role").from("group_members").where({ user_id: payload.id });
       })
       .select(
         "groups.id",
@@ -111,12 +111,13 @@ export const getSingleGroup = async (req, res) => {
         "countries.country_name",
         "remote",
         "name",
+        "role",
         "group_id as joined"
       )
       .from("groups_joined")
       .rightJoin("groups", "groups.id", "groups_joined.group_id")
-      .join("countries", "countries.id", "groups.country_id")
-      .join("regions", "regions.id", "groups.region_id")
+      .leftJoin("countries", "countries.id", "groups.country_id")
+      .leftJoin("regions", "regions.id", "groups.region_id")
       .andWhere({ "groups.id": id })
       .first();
     return res.status(200).send(groups);
