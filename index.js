@@ -12,7 +12,7 @@ import 'dotenv/config';
 const app = express();
 const { PORT, CROSS_ORIGIN } = process.env;
 
-app.use(cors({ origin: CROSS_ORIGIN }));
+app.use(cors());
 app.use(express.json());
 app.use('/users', usersRouter);
 app.use('/profiles', profilesRouter);
