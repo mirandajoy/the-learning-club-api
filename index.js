@@ -5,6 +5,7 @@ import usersRouter from './routes/users.js';
 import profilesRouter from './routes/profiles.js';
 import groupsRouter from './routes/groups.js';
 import eventsRouter from './routes/events.js';
+import locationsRouter from './routes/locations.js';
 
 import 'dotenv/config';
 
@@ -17,6 +18,11 @@ app.use('/users', usersRouter);
 app.use('/profiles', profilesRouter);
 app.use('/groups', groupsRouter);
 app.use('/events', eventsRouter);
+app.use('/locations', locationsRouter);
+
+app.get("/test", (req, res) => {
+  res.send("hello world");
+});
 
 app.listen(PORT, () => {
   console.log(`This app is listening on port ${PORT}`);

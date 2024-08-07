@@ -8,5 +8,6 @@ export default {
     password: process.env.PW,
     database: process.env.DB,
     charset: "utf8",
+    timezone: 'Z'
   },
 };

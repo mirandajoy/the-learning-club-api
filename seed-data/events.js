@@ -5,6 +5,7 @@ export default [
     time: "2024-07-25 20:00:00",
     location: "Halifax Public Library",
     address: "5440 Spring Garden Rd",
+    user_tz: "America/Halifax",
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ export default [
     time: "2024-08-29 20:00:00",
     location: "Halifax Public Library",
     address: "5440 Spring Garden Rd",
+    user_tz: "America/Halifax",
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ export default [
     time: "2024-09-26 20:00:00",
     location: "Halifax Public Library",
     address: "5440 Spring Garden Rd",
+    user_tz: "America/Halifax",
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ export default [
     time: "2024-07-23 20:30:00",
     location: "Café Saint-Henri",
     address: "7335 Rue Mile End",
+    user_tz: "America/Toronto",
   },
   {
     id: 5,
@@ -33,6 +37,7 @@ export default [
     time: "2024-08-27 20:30:00",
     location: "Café Saint-Henri",
     address: "7335 Rue Mile End",
+    user_tz: "America/Toronto",
   },
   {
     id: 6,
@@ -40,6 +45,7 @@ export default [
     time: "2024-09-24 20:30:00",
     location: "Café Saint-Henri",
     address: "7335 Rue Mile End",
+    user_tz: "America/Toronto",
   },
   {
     id: 7,
@@ -47,6 +53,7 @@ export default [
     time: "2024-07-23 18:00:00",
     location: "Flora Hall Brewing",
     address: "37 Flora St",
+    user_tz: "America/Toronto",
   },
   {
     id: 8,
@@ -54,6 +61,7 @@ export default [
     time: "2024-08-27 18:00:00",
     location: "Flora Hall Brewing",
     address: "37 Flora St",
+    user_tz: "America/Toronto",
   },
   {
     id: 9,
@@ -61,6 +69,7 @@ export default [
     time: "2024-09-24 18:00:00",
     location: "Flora Hall Brewing",
     address: "37 Flora St",
+    user_tz: "America/Toronto",
   },
   {
     id: 10,
@@ -68,6 +77,7 @@ export default [
     time: "2024-07-23 19:00:00",
     location: "High Park",
     address: "200 Parkside Dr",
+    user_tz: "America/Toronto",
   },
   {
     id: 11,
@@ -75,6 +85,7 @@ export default [
     time: "2024-08-27 19:00:00",
     location: "High Park",
     address: "200 Parkside Dr",
+    user_tz: "America/Toronto",
   },
   {
     id: 12,
@@ -82,6 +93,7 @@ export default [
     time: "2024-09-24 19:00:00",
     location: "High Park",
     address: "200 Parkside Dr",
+    user_tz: "America/Toronto",
   },
   {
     id: 13,
@@ -89,6 +101,7 @@ export default [
     time: "2024-07-23 18:30:00",
     location: "Phil & Sebastian Coffee Roasters",
     address: "2207 4 St SW",
+    user_tz: "America/Edmonton",
   },
   {
     id: 14,
@@ -96,6 +109,7 @@ export default [
     time: "2024-08-27 18:30:00",
     location: "Phil & Sebastian Coffee Roasters",
     address: "2207 4 St SW",
+    user_tz: "America/Edmonton",
   },
   {
     id: 15,
@@ -103,6 +117,7 @@ export default [
     time: "2024-09-24 18:30:00",
     location: "Phil & Sebastian Coffee Roasters",
     address: "2207 4 St SW",
+    user_tz: "America/Edmonton",
   },
   {
     id: 16,
@@ -110,6 +125,7 @@ export default [
     time: "2024-07-23 17:00:00",
     location: "Brewery Creek Cold Beer & Wine Store",
     address: "3045 Main St",
+    user_tz: "America/Vancouver",
   },
   {
     id: 17,
@@ -117,6 +133,7 @@ export default [
     time: "2024-08-27 17:00:00",
     location: "Brewery Creek Cold Beer & Wine Store",
     address: "3045 Main St",
+    user_tz: "America/Vancouver",
   },
   {
     id: 18,
@@ -124,6 +141,7 @@ export default [
     time: "2024-09-24 17:00:00",
     location: "Brewery Creek Cold Beer & Wine Store",
     address: "3045 Main St",
+    user_tz: "America/Vancouver",
   },
   {
     id: 19,
@@ -131,6 +149,7 @@ export default [
     time: "2024-07-23 17:30:00",
     location: "Bryant Park",
     address: "New York, NY 10018",
+    user_tz: "America/New_York",
   },
   {
     id: 20,
@@ -138,6 +157,7 @@ export default [
     time: "2024-08-27 17:30:00",
     location: "Bryant Park",
     address: "New York, NY 10018",
+    user_tz: "America/New_York",
   },
   {
     id: 21,
@@ -145,6 +165,7 @@ export default [
     time: "2024-09-24 17:30:00",
     location: "Bryant Park",
     address: "New York, NY 10018",
+    user_tz: "America/New_York",
   },
   {
     id: 22,
@@ -152,6 +173,7 @@ export default [
     time: "2024-07-23 19:00:00",
     location: "Intelligentsia Coffee",
     address: "53 E Randolph St",
+    user_tz: "America/Chicago",
   },
   {
     id: 23,
@@ -159,6 +181,7 @@ export default [
     time: "2024-08-27 19:00:00",
     location: "Intelligentsia Coffee",
     address: "53 E Randolph St",
+    user_tz: "America/Chicago",
   },
   {
     id: 24,
@@ -166,6 +189,7 @@ export default [
     time: "2024-09-24 19:00:00",
     location: "Intelligentsia Coffee",
     address: "53 E Randolph St",
+    user_tz: "America/Chicago",
   },
   {
     id: 25,
@@ -173,6 +197,7 @@ export default [
     time: "2024-07-23 20:00:00",
     location: "The Yards Park",
     address: "355 Water St SE",
+    user_tz: "America/New_York",
   },
   {
     id: 26,
@@ -180,6 +205,7 @@ export default [
     time: "2024-08-27 20:00:00",
     location: "The Yards Park",
     address: "355 Water St SE",
+    user_tz: "America/New_York",
   },
   {
     id: 27,
@@ -187,6 +213,7 @@ export default [
     time: "2024-09-24 20:00:00",
     location: "The Yards Park",
     address: "355 Water St SE",
+    user_tz: "America/New_York",
   },
   {
     id: 28,
@@ -194,6 +221,7 @@ export default [
     time: "2024-07-23 19:30:00",
     location: "Bennu Coffee",
     address: "2001 E Martin Luther King Jr Blvd",
+    user_tz: "America/Chicago",
   },
   {
     id: 29,
@@ -201,6 +229,7 @@ export default [
     time: "2024-08-27 19:30:00",
     location: "Bennu Coffee",
     address: "2001 E Martin Luther King Jr Blvd",
+    user_tz: "America/Chicago",
   },
   {
     id: 30,
@@ -208,6 +237,7 @@ export default [
     time: "2024-09-24 19:30:00",
     location: "Bennu Coffee",
     address: "2001 E Martin Luther King Jr Blvd",
+    user_tz: "America/Chicago",
   },
   {
     id: 31,
@@ -215,6 +245,7 @@ export default [
     time: "2024-07-23 20:00:00",
     location: "Piedmont Park",
     address: "1320 Monroe Dr NE",
+    user_tz: "America/New_York",
   },
   {
     id: 32,
@@ -222,6 +253,7 @@ export default [
     time: "2024-08-27 20:00:00",
     location: "Piedmont Park",
     address: "1320 Monroe Dr NE",
+    user_tz: "America/New_York",
   },
   {
     id: 33,
@@ -229,6 +261,7 @@ export default [
     time: "2024-09-24 20:00:00",
     location: "Piedmont Park",
     address: "1320 Monroe Dr NE",
+    user_tz: "America/New_York",
   },
   {
     id: 34,
@@ -236,6 +269,7 @@ export default [
     time: "2024-07-23 18:00:00",
     location: "Panther Coffee",
     address: "2390 NW 2nd Ave",
+    user_tz: "America/New_York",
   },
   {
     id: 35,
@@ -243,6 +277,7 @@ export default [
     time: "2024-08-27 18:00:00",
     location: "Panther Coffee",
     address: "2390 NW 2nd Ave",
+    user_tz: "America/New_York",
   },
   {
     id: 36,
@@ -250,6 +285,7 @@ export default [
     time: "2024-09-24 18:00:00",
     location: "Panther Coffee",
     address: "2390 NW 2nd Ave",
+    user_tz: "America/New_York",
   },
   {
     id: 37,
@@ -257,6 +293,7 @@ export default [
     time: "2024-07-23 20:00:00",
     location: "Denver Central Market",
     address: "2669 Larimer St",
+    user_tz: "America/Denver",
   },
   {
     id: 38,
@@ -264,6 +301,7 @@ export default [
     time: "2024-08-27 20:00:00",
     location: "Denver Central Market",
     address: "2669 Larimer St",
+    user_tz: "America/Denver",
   },
   {
     id: 39,
@@ -271,6 +309,7 @@ export default [
     time: "2024-09-24 20:00:00",
     location: "Denver Central Market",
     address: "2669 Larimer St",
+    user_tz: "America/Denver",
   },
   {
     id: 40,
@@ -278,6 +317,7 @@ export default [
     time: "2024-07-23 17:30:00",
     location: "Lux Central",
     address: "4402 N Central Ave",
+    user_tz: "America/Phoenix",
   },
   {
     id: 41,
@@ -285,6 +325,7 @@ export default [
     time: "2024-08-27 17:30:00",
     location: "Lux Central",
     address: "4402 N Central Ave",
+    user_tz: "America/Phoenix",
   },
   {
     id: 42,
@@ -292,6 +333,7 @@ export default [
     time: "2024-09-24 17:30:00",
     location: "Lux Central",
     address: "4402 N Central Ave",
+    user_tz: "America/Phoenix",
   },
   {
     id: 43,
@@ -299,6 +341,7 @@ export default [
     time: "2024-07-23 19:00:00",
     location: "Gas Works Park",
     address: "2101 N Northlake Way",
+    user_tz: "America/Los_Angeles",
   },
   {
     id: 44,
@@ -306,6 +349,7 @@ export default [
     time: "2024-08-27 19:00:00",
     location: "Gas Works Park",
     address: "2101 N Northlake Way",
+    user_tz: "America/Los_Angeles",
   },
   {
     id: 45,
@@ -313,6 +357,7 @@ export default [
     time: "2024-09-24 19:00:00",
     location: "Gas Works Park",
     address: "2101 N Northlake Way",
+    user_tz: "America/Los_Angeles",
   },
   {
     id: 46,
@@ -320,6 +365,7 @@ export default [
     time: "2024-07-23 18:00:00",
     location: "Golden Gate Park",
     address: "San Francisco, CA 94117",
+    user_tz: "America/Los_Angeles",
   },
   {
     id: 47,
@@ -327,6 +373,7 @@ export default [
     time: "2024-08-27 18:00:00",
     location: "Golden Gate Park",
     address: "San Francisco, CA 94117",
+    user_tz: "America/Los_Angeles",
   },
   {
     id: 48,
@@ -334,77 +381,90 @@ export default [
     time: "2024-09-24 18:00:00",
     location: "Golden Gate Park",
     address: "San Francisco, CA 94117",
+    user_tz: "America/Los_Angeles",
   },
   {
     id: 49,
     group_id: 17,
     time: "2024-07-23 19:00:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/New_York",
   },
   {
     id: 50,
     group_id: 17,
     time: "2024-08-27 19:00:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/New_York",
   },
   {
     id: 51,
     group_id: 17,
     time: "2024-09-24 19:00:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/New_York",
   },
   {
     id: 52,
     group_id: 18,
     time: "2024-07-23 17:00:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/New_York",
   },
   {
     id: 53,
     group_id: 18,
     time: "2024-08-27 17:00:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/New_York",
   },
   {
     id: 54,
     group_id: 18,
     time: "2024-09-24 17:00:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/New_York",
   },
   {
     id: 55,
     group_id: 19,
     time: "2024-07-23 18:30:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/Denver",
   },
   {
     id: 56,
     group_id: 19,
     time: "2024-08-27 18:30:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/Denver",
   },
   {
     id: 57,
     group_id: 19,
     time: "2024-09-24 18:30:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/Denver",
   },
   {
     id: 58,
     group_id: 20,
     time: "2024-07-23 19:00:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/Los_Angeles",
   },
   {
     id: 59,
     group_id: 20,
     time: "2024-08-27 19:00:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/Los_Angeles",
   },
   {
     id: 60,
     group_id: 20,
     time: "2024-09-24 19:00:00",
     remote_link: "https://us04web.zoom.us/j/78327127541?pwd=ZCdylqLAj6koC3XECLiuaav1p9caFW.1",
+    user_tz: "America/Los_Angeles",
   },
 ];
