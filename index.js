@@ -10,7 +10,7 @@ import locationsRouter from './routes/locations.js';
 import 'dotenv/config';
 
 const app = express();
-const { PORT, CROSS_ORIGIN } = process.env;
+const { MYSQLPORT, CROSS_ORIGIN } = process.env;
 
 app.use(cors());
 app.use(express.json());
@@ -24,6 +24,6 @@ app.get("/test", (req, res) => {
   res.send("hello world");
 });
 
-app.listen(PORT, () => {
-  console.log(`This app is listening on port ${PORT}`);
+app.listen(MYSQLPORT, () => {
+  console.log(`This app is listening on port ${MYSQLPORT}`);
 });
